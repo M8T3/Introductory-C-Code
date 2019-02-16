@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+/* Goal of program:
+Output a tree of character '*' type
+Below the tree (with two blank lines), output an ASCII cat
+*/
+
+int main(void) {
+   // Draw tree
+   printf("   *\n");
+   printf("  ***\n");
+   /* Type your code here. */
+   printf(" *****\n");
+   printf("*******\n");
+   printf("  ***\n\n\n");
+   printf("/\\   /\\\n");
+   printf("  o o\n");
+   printf(" =   =\n");
+   printf("  ---\n");
+   
+   return 0;
+}
