@@ -1,5 +1,11 @@
 #include <stdio.h>
-
+/* Goal of Program:
+Output the following:
+Hello World!
+How are you?
+   (I'm fine).
+*/   
+   
 int main(void) {
 
    printf("Hello world!\n");
