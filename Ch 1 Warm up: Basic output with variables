@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+/* Goal of program:
+Output the user's input.
+Extend to output the input squared and cubed.
+Extend to get a second user input into userNum2.
+*/
+
+int main(void) {
+   int userNum;
+   int userNum2;
+   
+   printf("Enter integer:\n");
+   scanf("%d", &userNum);
+   /* Type your code here. */
+   printf("You entered: %d\n", userNum);
+   int userNumSquared = userNum * userNum;
+   printf("%d squared is %d\n", userNum, userNumSquared);
+   int userNumCubed = userNum * userNum * userNum;
+   printf("And %d cubed is %d!!\n", userNum, userNumCubed);
+   
+   printf("Enter another integer:\n");
+   scanf("%d", &userNum2);
+   int userSum = userNum + userNum2;
+   printf("%d + %d is %d\n", userNum, userNum2, userSum);
+   int userProduct = userNum * userNum2;
+   printf("%d * %d is %d\n", userNum, userNum2, userProduct);
+   return 0;
+}
