@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include <string.h>
+
+//Returns the number of characters in usrStr
+int GetNumOfCharacters(const char usrStr[]) {
+   int i;
+   int numOfCharacters = 0;
+   for (i = 0; i < strlen(usrStr); ++i) {
+      numOfCharacters = numOfCharacters + 1;
+   }
+   
+   return numOfCharacters;
+}
+
+void OutputWithoutWhitespace(char usrStr[]) {
+   int i;
+   int j;
+   
+   for (i = 0; i < strlen(usrStr); ++i) {
+      if (usrStr[i] == ' ') {
+         j = i;
+         while (usrStr[j] != '\0') {
+            usrStr[j] = usrStr[j + 1];
+            j = j + 1; 
+            if (usrStr[j] == '\n') {
+               usrStr[j] = '\0';
+            }
+         }
+      }
+   }
+}
+
+int main(void) {
+   const int NUM_CHARS = 1000;
+   char userString[NUM_CHARS];
+
+   printf("Enter a sentence or phrase:\n\n");
+   fgets(userString, NUM_CHARS, stdin);
+   printf("You entered: %s\n", userString);
+   printf("Number of characters: %d\n", GetNumOfCharacters(userString));
+   OutputWithoutWhitespace(userString);
+   printf("String with no whitespace: %s\n\n", userString);
+   return 0;
+}
