@@ -1,0 +1,160 @@
+#include<stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int GetNumOfNonWSCharacters(const char userText[]) { //function to calculate number of non-whitespace characters in user input string
+   int i;
+   int numOfNonWSChar; //counter variable, increments everytime non-whitespace character encountered
+   
+   numOfNonWSChar = 0;
+   for (i = 0; i < strlen(userText); ++i) {
+      if (userText[i] != ' ' && userText[i] != '\n') {
+         numOfNonWSChar = numOfNonWSChar + 1;
+      }
+   }
+   
+   return numOfNonWSChar;
+}
+
+int IsEndofSentence(const char userChar) {
+   int punct;
+   if (isspace(userChar) || userChar == '.' || userChar == '!' || userChar == ',' || userChar == ';') {
+      punct = 1;
+   }
+   else {
+      punct = 0;
+   }
+   
+   return punct;
+}
+
+int GetNumOfWords(const char userWords[]) { //FIXME
+   int i; 
+   int numOfWords;
+  
+   numOfWords = 0;
+   for (i = 0; i < strlen(userWords) - 1; ++i) { //iterates through user string until '\n' character (userWords[strlen(userWords) - 1])
+      if (isalpha(userWords[i]) && IsEndofSentence(userWords[i+1])) { //FIXME: returns one less word than expected
+         printf("%c %c\n", userWords[i], userWords[i + 1]);
+         numOfWords = numOfWords + 1;                                                      //from user input string (number of words ~> 5)   
+      }
+   }
+
+   return numOfWords;
+}
+
+void FixCapitalization(char userInfo[]) { //captializes first letter of each sentence 
+   int i;
+   
+   for (i = 0; i < strlen(userInfo); ++i) {
+       if (i == 0) {
+          userInfo[i] = toupper(userInfo[i]);
+       }
+       else if (userInfo[i] == ' ' && ((userInfo[i - 1] == ' ' || userInfo[i - 1] == '.') //Sorry. A bit messy
+       && (userInfo[i - 2] == ' ' || userInfo[i - 2] == '.' || isalpha(userInfo[i -2]) ))) {
+          if (islower(userInfo[i + 1]))  {
+            userInfo[i + 1] = toupper(userInfo[i + 1]);
+          }
+       }
+   }
+}
+
+void ReplaceExclamation(char userStuff[]) { //changes each exclamation mark into a period
+   int i; 
+   
+   for (i = 0; i < strlen(userStuff); ++i) {
+      if (userStuff[i] == '!') {
+         userStuff[i] = '.';
+      }
+   }
+   
+}
+
+void ShortenSpace(char userThing[]) { //removes excess spaces (2+ spaces) between words and replaces with single space
+   int i;
+   int j;
+   
+   for (i = 0; i < strlen(userThing); ++i) {
+      while (userThing[i] == ' ' && userThing[i + 1] == ' ') {
+         j = i;                                                //counter variable used to shift all elements of array to the left
+         while (userThing[j] != '\0') {                        //while the current character is not equal to '\0' 
+            userThing[j] = userThing[j + 1];
+            j = j + 1;
+            if (userThing[j] == '\n') {
+               userThing[j] = '\0';
+            }
+         }
+      }
+   }
+}
+
+void PrintMenu(char userChoice[]) { //function that computes the options the user chooses based on input character
+   const int OPTION_LENGTH = 50;
+   const int NUM_OPTIONS = 6;
+   char menu[NUM_OPTIONS][OPTION_LENGTH];
+   strcpy(menu[0], "c - Number of non-whitespace characters");
+   strcpy(menu[1], "w - Number of words");
+   strcpy(menu[2], "f - Fix capitalization");
+   strcpy(menu[3], "r - Replace all !'s");
+   strcpy(menu[4], "s - Shorten spaces");
+   strcpy(menu[5], "q - Quit");
+   int i;
+   char userOption;
+   
+   printf("MENU\n");
+   for (i = 0; i < NUM_OPTIONS; ++i) {
+      printf("%s\n", menu[i]);
+   }
+   
+   printf("\nChoose an option:\n");
+   scanf("%c\n", &userOption);
+   
+   while (userOption == 'q') {
+      break;
+   }
+   
+   while (userOption != 'q') {
+      if (userOption == 'c') {
+         printf("Number of non-whitespace characters: %d\n\n", GetNumOfNonWSCharacters(userChoice));
+      }
+      else if (userOption == 'w') {
+         printf("Number of words: %d\n\n", GetNumOfWords(userChoice));
+      }
+      else if (userOption == 'f') {
+         FixCapitalization(userChoice);
+         printf("Edited text: %s\n", userChoice);
+      }
+      else if (userOption == 'r') {
+         ReplaceExclamation(userChoice);
+         printf("Edited text: %s\n", userChoice);
+      }
+      else if (userOption == 's') {
+         ShortenSpace(userChoice);
+         printf("Edited text: %s\n", userChoice);
+      }
+      else {
+         printf("Invalid choice. Please enter a valid choice:\n");
+      }
+      
+      printf("MENU\n");
+      for (i = 0; i < NUM_OPTIONS; ++i) {
+         printf("%s\n", menu[i]);
+      }
+      printf("\nChoose an option:\n");
+      scanf("%c\n", &userOption);
+   }
+}
+
+
+int main(void) {
+
+   /* Type your code here. */
+   const int NUM_CHARS = 10000; //max number of characters for user string
+   char userString[NUM_CHARS];
+   
+   printf("Enter a sample text:\n\n");
+   fgets(userString, NUM_CHARS, stdin);
+   printf("You entered: %s\n", userString);
+   PrintMenu(userString);
+   return 0;
+}
