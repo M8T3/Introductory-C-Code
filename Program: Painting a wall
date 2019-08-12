@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <math.h>                  
+
+int main(void) {
+   double wallHeight;
+   double wallWidth;
+   double wallArea;
+   const double paintGallon = 350.0; 
+   double paintNeeded;
+   int cansNeeded;
+
+   printf("Enter wall height (feet):\n");
+   scanf("%lf", &wallHeight);
+   
+   printf("Enter wall width (feet):\n");
+   scanf("%lf", &wallWidth);               
+   
+   // Calculate and output wall area
+   wallArea = wallHeight * wallWidth;                 
+   printf("Wall area: %lf square feet\n", wallArea);       
+   
+   paintNeeded = wallArea/paintGallon;
+   printf("Paint needed: %lf gallons\n", paintNeeded);
+   cansNeeded = ceil(paintNeeded);
+   printf("Cans needed: %d can(s)\n", cansNeeded); 
+   return 0;
+}
