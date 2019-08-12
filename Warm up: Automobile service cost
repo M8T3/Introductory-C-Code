@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+   char firstString[20];
+   char secondString[20];
+   int priceOilchange = 35;
+   int priceTirerotation = 19;
+   int priceCarwash = 7;
+   
+   printf("Enter desired auto service:\n");
+   scanf("%s", firstString);
+   scanf(" %s", secondString);
+   printf("You entered: %s %s\n", firstString, secondString);
+   
+   if (strcmp(firstString,"Oil") == 0 && strcmp(secondString,"change") == 0) {
+      printf("Cost of oil change: $%d\n",priceOilchange);
+   }
+   else if (strcmp(firstString,"Tire") == 0 && strcmp(secondString,"rotation") == 0) {
+      printf("Cost of tire rotation: $%d\n",priceTirerotation);
+   }
+   else if (strcmp(firstString,"Car") == 0 && strcmp(secondString,"wash") == 0) {
+      printf("Cost of car wash: $%d\n",priceCarwash);
+   }
+   else {
+      printf("Error: Requested service is not recognized\n");
+   }
+   return 0;
+}
