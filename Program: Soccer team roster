@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+int main(void) {
+
+   /* Type your code here. */
+   const int NUM_PLAYERS = 5;
+   const int OPTION_LENGTH = 50;
+   int playerJersey[NUM_PLAYERS];
+   int playerRating[NUM_PLAYERS]; 
+   char menu[5][OPTION_LENGTH];
+   char userOption = 'z';
+   int userJersey;
+   int newRating;
+   int i;
+   bool found;
+   
+   strcpy(menu[0], "u - Update player rating"); 
+   strcpy(menu[1], "a - Output players above a rating"); 
+   strcpy(menu[2], "r - Replace player"); 
+   strcpy(menu[3], "o - Output roster"); 
+   strcpy(menu[4], "q - Quit"); 
+   
+   for (i = 0; i < NUM_PLAYERS; ++i) {
+      printf("Enter player %d's jersey number:\n", i+1);
+      scanf("%d\n", &playerJersey[i]);
+      printf("Enter player %d's rating:\n\n", i+1);
+      scanf("%d\n", &playerRating[i]);
+      
+   }
+   
+   printf("ROSTER\n");
+   for (i = 0; i < NUM_PLAYERS; ++i) {
+   printf("Player %d -- Jersey number: %d, Rating: %d\n", i+1, playerJersey[i], playerRating[i]);
+   }
+   
+   printf("\nMENU\n");
+   for (i = 0; i < NUM_PLAYERS; ++i) {
+      printf("%s\n", menu[i]);
+   }
+   
+   printf("\nChoose an option:\n");
+   scanf("%c\n", &userOption);
+   
+   while (userOption != 'q') {
+      if (userOption == 'u') {
+         printf("\nEnter a jersey number:\n");
+         scanf("%d\n", &userJersey);
+         printf("Enter a new rating for player:\n");
+         scanf("%d\n", &newRating);
+         for (i = 0; i < NUM_PLAYERS; ++i) {
+            if (playerJersey[i] == userJersey) {
+               playerRating[i] = newRating;
+            }
+         }
+      }
+      if (userOption == 'a') {
+         printf("\nEnter a rating:\n");
+         scanf("%d\n", &newRating);
+         printf("\nABOVE %d\n", newRating);
+         for (i = 0; i < NUM_PLAYERS; ++i) {
+            if (playerRating[i] > newRating) {
+               printf("Player %d -- Jersey number: %d, Rating: %d\n", i+1, playerJersey[i], playerRating[i]);
+            }
+         }
+      }
+      if (userOption == 'r') {
+         printf("\nEnter a jersey number:\n");
+         scanf("%d\n", &userJersey);
+         found = false;
+         for (i = 0; i < NUM_PLAYERS; ++i) {
+            if (playerJersey[i] == userJersey) {
+               found = true;
+               printf("Enter a new jersey number:\n");
+               scanf("%d\n", &playerJersey[i]);
+               printf("Enter a new rating for the new player:\n");
+               scanf("%d\n", &playerRating[i]);
+            }
+         }
+         if (!found) {
+            printf("Invalid jersey number\n");
+         }
+      }
+      if (userOption == 'o') {
+         printf("\nROSTER\n");
+         for (i = 0; i < NUM_PLAYERS; ++i) {
+            printf("Player %d -- Jersey number: %d, Rating: %d\n", i+1, playerJersey[i], playerRating[i]);
+         }
+      }
+      printf("\nMENU\n");
+      for (i = 0; i < NUM_PLAYERS; ++i) {
+         printf("%s\n", menu[i]);
+      }
+      printf("\nChoose an option:\n");
+      scanf("%c\n", &userOption);
+   }
+   
+   while (userOption == 'q') {
+      break;
+   }
+   
+   return 0;
+}
