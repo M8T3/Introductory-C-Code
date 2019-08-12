@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int main(void) {
+
+   const int NUM_WEIGHTS = 5;
+   double userWeight[NUM_WEIGHTS];
+   double totalWeight;
+   double avgWeight;
+   double maxWeight;
+   int i;
+    
+   //Take user input
+   for (i = 0; i < NUM_WEIGHTS; ++i) {
+      printf("Enter weight %d:\n", i+1); 
+      scanf("%lf ", &userWeight[i]);
+   }
+   
+   printf("You entered: ");
+   for (i = 0; i < NUM_WEIGHTS; ++i) {
+      printf("%lf ", userWeight[i]);
+   }
+   
+   printf("\n\n"); 
+   
+   //To compute total weight (sum)
+   totalWeight = 0;
+   for (i = 0; i < NUM_WEIGHTS; ++i) {
+      totalWeight = totalWeight + userWeight[i];
+   }
+   
+   //To compute average weight 
+   avgWeight = totalWeight/NUM_WEIGHTS;
+   
+   //To find weight 
+   maxWeight = userWeight[0];
+   for (i = 0; i < NUM_WEIGHTS; ++i) {
+      if (maxWeight < userWeight[i]) {
+         maxWeight = userWeight[i];
+      }
+   }
+   
+   printf("Total weight: %lf\n", totalWeight);
+   printf("Average weight: %lf\n", avgWeight);
+   printf("Max weight: %lf\n", maxWeight);
+   return 0;
+}
