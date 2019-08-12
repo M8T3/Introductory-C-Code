@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+   char firstString[20];
+   char secondString[20];
+   char thirdString[20];
+   char fourthString[20];
+   char currentThirdstring[20];
+   char noService[20] = "No service";
+   int oilChange = 35;
+   int tireRotation = 19;
+   int carWash = 7;
+   int carWax = 12;
+   int service1;
+   int service2;
+   int total; 
+  
+   printf("Davy's auto shop services\n");
+   printf("Oil change -- $%d\n", oilChange);
+   printf("Tire rotation -- $%d\n", tireRotation);
+   printf("Car wash -- $%d\n", carWash);
+   printf("Car wax -- $%d\n\n", carWax);
+   
+   printf("Select first service:\n");
+   scanf("%s", firstString);
+   scanf(" %s", secondString);  
+   printf("Select second service:\n\n");
+   scanf("%s", thirdString);
+   scanf(" %s", fourthString);    
+   
+   printf("Davy's auto shop invoice\n\n");
+   if (strcmp(firstString,"-") == 0) {
+      printf("Service 1: %s\n", noService);
+      service1 = 0;
+      if (strcmp(secondString,"-") != 0) {
+         strcpy(currentThirdstring,thirdString);
+         strcpy(thirdString,secondString);
+         strcpy(fourthString,currentThirdstring);
+         strcpy(secondString," ");
+      }
+   }
+   else if (strcmp(firstString,"-") != 0) {
+      if (strcmp(firstString, "Oil") == 0 && strcmp(secondString, "change") == 0) {
+         printf("Service 1: %s %s, $%d\n", firstString, secondString, oilChange);
+         service1 = oilChange;
+      }
+      else if (strcmp(firstString, "Tire") == 0 && strcmp(secondString, "rotation") == 0) {
+         printf("Service 1: %s %s, $%d\n", firstString, secondString, tireRotation);
+         service1 = tireRotation;
+      }
+      else if (strcmp(firstString, "Car") == 0 && strcmp(secondString, "wash") == 0) {
+         printf("Service 1: %s %s, $%d\n", firstString, secondString, carWash);
+         service1 = carWash;
+      }
+      else if (strcmp(firstString, "Car") == 0 && strcmp(secondString, "wax") == 0) {
+         printf("Service 1: %s %s, $%d\n", firstString, secondString, carWax);
+         service1 = carWax;
+      }
+   }
+   
+   
+   if (strcmp(secondString,"-") == 0 || strcmp(thirdString,"-") == 0) {
+      printf("Service 2: %s\n", noService);
+      service2 = 0;
+   }
+   else if (strcmp(secondString,"-") != 0 || strcmp(thirdString,"-") != 0) {
+      if (strcmp(thirdString, "Oil") == 0 && strcmp(fourthString, "change") == 0) {
+         printf("Service 2: %s %s, $%d\n", thirdString, fourthString, oilChange);
+         service2 = oilChange;
+      }
+      else if (strcmp(thirdString, "Tire") == 0 && strcmp(fourthString, "rotation") == 0) {
+         printf("Service 2: %s %s, $%d\n", thirdString, fourthString, tireRotation);
+         service2 = tireRotation;
+      }
+      else if (strcmp(thirdString, "Car") == 0 && strcmp(fourthString, "wash") == 0) {
+         printf("Service 2: %s %s, $%d\n", thirdString, fourthString, carWash);
+         service2 = carWash;
+      }
+      else if (strcmp(thirdString, "Car") == 0 && strcmp(fourthString, "wax") == 0) {
+         printf("Service 2: %s %s, $%d\n", thirdString, fourthString, carWax);
+         service2 = carWax;
+      }
+   }
+   
+   total = service1 + service2;
+   printf("\nTotal: $%d\n", total);
+   return 0;
+}
