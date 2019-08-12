@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main(void) {
+   int arrowBaseHeight;
+   int arrowBaseWidth;
+   int arrowHeadWidth;
+   int charCount;
+   
+   printf("Enter arrow base height:\n");
+   scanf("%d", &arrowBaseHeight);
+   
+   printf("Enter arrow base width:\n");
+   scanf("%d", &arrowBaseWidth);
+   
+   arrowHeadWidth = 0;
+
+   while (arrowHeadWidth <= arrowBaseWidth) {
+       printf("Enter arrow head width:\n");
+       scanf("%d", &arrowHeadWidth);
+   }
+   
+   printf("\n");
+   
+   for (int i = 1; i <= arrowBaseHeight; ++i) {
+      for (int j = 1; j <= arrowBaseWidth; ++j) {
+         printf("*");
+      }
+      printf("\n");
+   }
+   
+   charCount = arrowHeadWidth;
+   
+   for (int k = 1; k <= arrowHeadWidth; ++k) {
+      for (int p = charCount; p >= 1; --p) {
+         printf("*");
+      }
+      charCount = arrowHeadWidth - k;
+      printf("\n");
+   }
+   return 0;
+}
